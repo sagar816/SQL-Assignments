@@ -1,0 +1,257 @@
+
+Setting environment for using XAMPP for Windows.
+shree@SIR c:\xampp
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.25-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database company;
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| django910          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+7 rows in set (0.214 sec)
+
+MariaDB [(none)]> use company;
+Database changed
+MariaDB [company]> create table employee(id int, name varchar(50), salary decimal(5,2))
+;
+Query OK, 0 rows affected (0.950 sec)
+
+MariaDB [company]> .show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresp
+onds to your MariaDB server version for the right syntax to use near '.show tables' at
+line 1
+MariaDB [company]> show tables;
++-------------------+
+| Tables_in_company |
++-------------------+
+| employee          |
++-------------------+
+1 row in set (0.010 sec)
+
+MariaDB [company]> desc employee;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int(11)      | YES  |     | NULL    |       |
+| name   | varchar(50)  | YES  |     | NULL    |       |
+| salary | decimal(5,2) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.155 sec)
+
+MariaDB [company]>
+MariaDB [company]> alter table employee add DOB varchar(20);
+Query OK, 0 rows affected (0.222 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> desc employee;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int(11)      | YES  |     | NULL    |       |
+| name   | varchar(50)  | YES  |     | NULL    |       |
+| salary | decimal(5,2) | YES  |     | NULL    |       |
+| DOB    | varchar(20)  | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+4 rows in set (0.028 sec)
+
+MariaDB [company]> alter table employee add Address varchar(50);
+Query OK, 0 rows affected (0.140 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> alter table employee modify Address varchar(50) after salary;
+Query OK, 0 rows affected (0.422 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> desc employee;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(50)  | YES  |     | NULL    |       |
+| salary  | decimal(5,2) | YES  |     | NULL    |       |
+| Address | varchar(50)  | YES  |     | NULL    |       |
+| DOB     | varchar(20)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.026 sec)
+
+MariaDB [company]> alter table employee add Mobile int;
+Query OK, 0 rows affected (0.219 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> alter table employee modify Mobile int after name;
+Query OK, 0 rows affected (0.145 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> desc employee;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(50)  | YES  |     | NULL    |       |
+| Mobile  | int(11)      | YES  |     | NULL    |       |
+| salary  | decimal(5,2) | YES  |     | NULL    |       |
+| Address | varchar(50)  | YES  |     | NULL    |       |
+| DOB     | varchar(20)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+6 rows in set (0.028 sec)
+
+MariaDB [company]> alter table employee modify DOB date;
+Query OK, 0 rows affected (1.043 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> desc employee;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(50)  | YES  |     | NULL    |       |
+| Mobile  | int(11)      | YES  |     | NULL    |       |
+| salary  | decimal(5,2) | YES  |     | NULL    |       |
+| Address | varchar(50)  | YES  |     | NULL    |       |
+| DOB     | date         | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+6 rows in set (0.026 sec)
+
+MariaDB [company]> alter table employee modify Mobile bigint;
+Query OK, 0 rows affected (0.832 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> desc employee;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(50)  | YES  |     | NULL    |       |
+| Mobile  | bigint(20)   | YES  |     | NULL    |       |
+| salary  | decimal(5,2) | YES  |     | NULL    |       |
+| Address | varchar(50)  | YES  |     | NULL    |       |
+| DOB     | date         | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+6 rows in set (0.109 sec)
+
+MariaDB [company]> alter table employee change Mobile Mob bigint;
+Query OK, 0 rows affected (0.157 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> desc employee;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(50)  | YES  |     | NULL    |       |
+| Mob     | bigint(20)   | YES  |     | NULL    |       |
+| salary  | decimal(5,2) | YES  |     | NULL    |       |
+| Address | varchar(50)  | YES  |     | NULL    |       |
+| DOB     | date         | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+6 rows in set (0.091 sec)
+
+MariaDB [company]> alter table employee rename to employee_info;
+Query OK, 0 rows affected (0.470 sec)
+
+MariaDB [company]> show tables;
++-------------------+
+| Tables_in_company |
++-------------------+
+| employee_info     |
++-------------------+
+1 row in set (0.001 sec)
+
+MariaDB [company]> alter table employee_info add constraint c_uni unique(id);
+Query OK, 0 rows affected (0.292 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> desc employee_info;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  | UNI | NULL    |       |
+| name    | varchar(50)  | YES  |     | NULL    |       |
+| Mob     | bigint(20)   | YES  |     | NULL    |       |
+| salary  | decimal(5,2) | YES  |     | NULL    |       |
+| Address | varchar(50)  | YES  |     | NULL    |       |
+| DOB     | date         | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+6 rows in set (0.025 sec)
+
+MariaDB [company]> alter table employee_info modify name varchar(50) not null;
+Query OK, 0 rows affected (0.980 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> alter table employee_info modify salary decimal(5,2) not null;
+Query OK, 0 rows affected (0.672 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> desc employee_info;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  | UNI | NULL    |       |
+| name    | varchar(50)  | NO   |     | NULL    |       |
+| Mob     | bigint(20)   | YES  |     | NULL    |       |
+| salary  | decimal(5,2) | NO   |     | NULL    |       |
+| Address | varchar(50)  | YES  |     | NULL    |       |
+| DOB     | date         | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+6 rows in set (0.092 sec)
+
+MariaDB [company]> alter table employee_info drop Address;
+Query OK, 0 rows affected (0.156 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [company]> desc employee_info;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int(11)      | YES  | UNI | NULL    |       |
+| name   | varchar(50)  | NO   |     | NULL    |       |
+| Mob    | bigint(20)   | YES  |     | NULL    |       |
+| salary | decimal(5,2) | NO   |     | NULL    |       |
+| DOB    | date         | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.108 sec)
+
+MariaDB [company]> drop table employee_info;
+Query OK, 0 rows affected (0.227 sec)
+
+MariaDB [company]> show tables;
+Empty set (0.001 sec)
+
+MariaDB [company]> drop database company;
+Query OK, 0 rows affected (3.473 sec)
+
+MariaDB [(none)]> show databses;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresp
+onds to your MariaDB server version for the right syntax to use near 'databses' at line
+ 1
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| django910          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]>
